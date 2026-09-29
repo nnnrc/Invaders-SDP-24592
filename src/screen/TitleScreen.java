@@ -62,14 +62,18 @@ public class TitleScreen extends Screen {
 					|| inputManager.isKeyDown(KeyEvent.VK_W)) {
 				previousMenuItem();
 				this.selectionCooldown.reset();
+				System.out.println("메뉴 이동: menu_move.wav 재생 예정");
 			}
 			if (inputManager.isKeyDown(KeyEvent.VK_DOWN)
 					|| inputManager.isKeyDown(KeyEvent.VK_S)) {
 				nextMenuItem();
 				this.selectionCooldown.reset();
+				System.out.println("메뉴 이동: menu_move.wav 재생 예정");
 			}
-			if (inputManager.isKeyDown(KeyEvent.VK_SPACE))
+			if (inputManager.isKeyDown(KeyEvent.VK_SPACE)) {
+				System.out.println("메뉴 선택: menu_select.wav 재생 예정");
 				this.isRunning = false;
+			}
 		}
 	}
 
