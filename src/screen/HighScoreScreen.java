@@ -22,7 +22,7 @@ public class HighScoreScreen extends Screen {
 	/** List of past high scores. */
 	private List<Score> highScores;
 	/** Sound played when leaving the high score screen. */
-	private static Clip menuSelectClip;
+	private static Clip menuBackClip;
 	/**
 	 * Constructor, establishes the properties of the screen.
 	 * 
@@ -44,8 +44,8 @@ public class HighScoreScreen extends Screen {
 			logger.warning("Couldn't load high scores!");
 		}
 
-		if (menuSelectClip == null)
-			menuSelectClip = loadSound("sound/menu_select.wav");
+		if (menuBackClip == null)
+			menuBackClip = loadSound("sound/menu_back.wav");
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class HighScoreScreen extends Screen {
 		draw();
 		if (inputManager.isKeyDown(KeyEvent.VK_SPACE)
 				&& this.inputDelay.checkFinished()) {
-			playSound(menuSelectClip);
+			playSound(menuBackClip);
 			this.isRunning = false;
 		}
 
