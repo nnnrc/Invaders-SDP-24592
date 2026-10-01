@@ -9,7 +9,10 @@ import engine.Cooldown;
 import engine.Core;
 import engine.GameState;
 import engine.Score;
-
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 /**
  * Implements the score screen.
  * 
@@ -45,7 +48,12 @@ public class ScoreScreen extends Screen {
 	private int nameCharSelected;
 	/** Time between changes in user selection. */
 	private Cooldown selectionCooldown;
-
+	/** Sound played when moving the cursor or changing a character. */
+	private static Clip menuMoveClip;
+	/** Sound played when choosing to play again. */
+	private static Clip menuSelectClip;
+	/** Sound played when returning to the main menu. */
+	private static Clip menuBackClip;
 	/**
 	 * Constructor, establishes the properties of the screen.
 	 * 
@@ -82,6 +90,14 @@ public class ScoreScreen extends Screen {
 		} catch (IOException e) {
 			logger.warning("Couldn't load high scores!");
 		}
+
+		if (menuMoveClip == null)
+			menuMoveClip = loadSound("sound/menu_move.wav");
+		if (menuSelectClip == null)
+			menuSelectClip = loadSound("sound/menu_select.wav");
+		if (menuBackClip == null)
+			menuBackClip = loadSound("sound/menu_back.wav");
+
 	}
 
 	/**
@@ -105,12 +121,14 @@ public class ScoreScreen extends Screen {
 		if (this.inputDelay.checkFinished()) {
 			if (inputManager.isKeyDown(KeyEvent.VK_ESCAPE)) {
 				// Return to main menu.
+				playSound(menuBackClip);
 				this.returnCode = 1;
 				this.isRunning = false;
 				if (this.isNewRecord)
 					saveScore();
 			} else if (inputManager.isKeyDown(KeyEvent.VK_SPACE)) {
 				// Play again.
+				playSound(menuSelectClip);
 				this.returnCode = 2;
 				this.isRunning = false;
 				if (this.isNewRecord)
@@ -122,11 +140,13 @@ public class ScoreScreen extends Screen {
 					this.nameCharSelected = this.nameCharSelected == 2 ? 0
 							: this.nameCharSelected + 1;
 					this.selectionCooldown.reset();
+					playSound(menuMoveClip);
 				}
 				if (inputManager.isKeyDown(KeyEvent.VK_LEFT)) {
 					this.nameCharSelected = this.nameCharSelected == 0 ? 2
 							: this.nameCharSelected - 1;
 					this.selectionCooldown.reset();
+					playSound(menuMoveClip);
 				}
 				if (inputManager.isKeyDown(KeyEvent.VK_UP)) {
 					this.name[this.nameCharSelected] =
@@ -134,6 +154,7 @@ public class ScoreScreen extends Screen {
 									== LAST_CHAR ? FIRST_CHAR
 							: this.name[this.nameCharSelected] + 1);
 					this.selectionCooldown.reset();
+					playSound(menuMoveClip);
 				}
 				if (inputManager.isKeyDown(KeyEvent.VK_DOWN)) {
 					this.name[this.nameCharSelected] =
@@ -141,6 +162,7 @@ public class ScoreScreen extends Screen {
 									== FIRST_CHAR ? LAST_CHAR
 							: this.name[this.nameCharSelected] - 1);
 					this.selectionCooldown.reset();
+					playSound(menuMoveClip);
 				}
 			}
 		}
@@ -180,4 +202,40 @@ public class ScoreScreen extends Screen {
 
 		drawManager.completeDrawing(this);
 	}
+
+	// TODO: AudioManager 완성 후 교체
+
+	/**
+	 * Loads a sound effect file and prepares it for playback.
+	 *
+	 * @param path
+	 *            Path of the WAV file to load.
+	 * @return Prepared clip, or null if loading failed.
+	 */
+	private Clip loadSound(final String path) {
+		try {
+			AudioInputStream audio = AudioSystem.getAudioInputStream(new File(path));
+			Clip clip = AudioSystem.getClip();
+			clip.open(audio);
+			return clip;
+		} catch (Exception e) {
+			logger.warning("Couldn't load sound: " + path);
+			return null;
+		}
+	}
+
+	/**
+	 * Plays a prepared sound effect from the beginning.
+	 *
+	 * @param clip
+	 *            Clip to play.
+	 */
+	private void playSound(final Clip clip) {
+		if (clip == null)
+			return;
+		clip.stop();
+		clip.setFramePosition(0);
+		clip.start();
+	}
+
 }
