@@ -6,6 +6,10 @@ import java.util.List;
 
 import engine.Core;
 import engine.Score;
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 /**
  * Implements the high scores screen, it shows player records.
@@ -17,7 +21,8 @@ public class HighScoreScreen extends Screen {
 
 	/** List of past high scores. */
 	private List<Score> highScores;
-
+	/** Sound played when leaving the high score screen. */
+	private static Clip menuSelectClip;
 	/**
 	 * Constructor, establishes the properties of the screen.
 	 * 
@@ -38,6 +43,9 @@ public class HighScoreScreen extends Screen {
 		} catch (NumberFormatException | IOException e) {
 			logger.warning("Couldn't load high scores!");
 		}
+
+		if (menuSelectClip == null)
+			menuSelectClip = loadSound("sound/menu_select.wav");
 	}
 
 	/**
@@ -59,8 +67,11 @@ public class HighScoreScreen extends Screen {
 
 		draw();
 		if (inputManager.isKeyDown(KeyEvent.VK_SPACE)
-				&& this.inputDelay.checkFinished())
+				&& this.inputDelay.checkFinished()) {
+			playSound(menuSelectClip);
 			this.isRunning = false;
+		}
+
 	}
 
 	/**
@@ -74,4 +85,40 @@ public class HighScoreScreen extends Screen {
 
 		drawManager.completeDrawing(this);
 	}
+
+	// TODO: AudioManager 완성 후 교체
+
+	/**
+	 * Loads a sound effect file and prepares it for playback.
+	 *
+	 * @param path
+	 *            Path of the WAV file to load.
+	 * @return Prepared clip, or null if loading failed.
+	 */
+	private Clip loadSound(final String path) {
+		try {
+			AudioInputStream audio = AudioSystem.getAudioInputStream(new File(path));
+			Clip clip = AudioSystem.getClip();
+			clip.open(audio);
+			return clip;
+		} catch (Exception e) {
+			logger.warning("Couldn't load sound: " + path);
+			return null;
+		}
+	}
+
+	/**
+	 * Plays a prepared sound effect from the beginning.
+	 *
+	 * @param clip
+	 *            Clip to play.
+	 */
+	private void playSound(final Clip clip) {
+		if (clip == null)
+			return;
+		clip.stop();
+		clip.setFramePosition(0);
+		clip.start();
+	}
+
 }
