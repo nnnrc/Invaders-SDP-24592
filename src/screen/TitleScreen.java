@@ -1,6 +1,12 @@
 package screen;
 
 import java.awt.event.KeyEvent;
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineListener;
 
 import engine.Cooldown;
 import engine.Core;
@@ -62,16 +68,16 @@ public class TitleScreen extends Screen {
 					|| inputManager.isKeyDown(KeyEvent.VK_W)) {
 				previousMenuItem();
 				this.selectionCooldown.reset();
-				System.out.println("메뉴 이동: menu_move.wav 재생 예정");
+				playSound("sound/menu_move.wav");
 			}
 			if (inputManager.isKeyDown(KeyEvent.VK_DOWN)
 					|| inputManager.isKeyDown(KeyEvent.VK_S)) {
 				nextMenuItem();
 				this.selectionCooldown.reset();
-				System.out.println("메뉴 이동: menu_move.wav 재생 예정");
+				playSound("sound/menu_move.wav");
 			}
 			if (inputManager.isKeyDown(KeyEvent.VK_SPACE)) {
-				System.out.println("메뉴 선택: menu_select.wav 재생 예정");
+				playSound("sound/menu_select.wav");
 				this.isRunning = false;
 			}
 		}
@@ -111,5 +117,29 @@ public class TitleScreen extends Screen {
 		drawManager.drawMenu(this, this.returnCode);
 
 		drawManager.completeDrawing(this);
+	}
+
+	/**
+	 * Plays a sound effect file once.
+	 *
+	 * @param path
+	 *            Path of the WAV file to play.
+	 */
+	private void playSound(final String path) {
+		try {
+			AudioInputStream audio = AudioSystem.getAudioInputStream(new File(path));
+			final Clip clip = AudioSystem.getClip();
+			clip.addLineListener(new LineListener() {
+				@Override
+				public void update(final LineEvent event) {
+					if (event.getType() == LineEvent.Type.STOP)
+						clip.close();
+				}
+			});
+			clip.open(audio);
+			clip.start();
+		} catch (Exception e) {
+			logger.warning("Couldn't play sound: " + path);
+		}
 	}
 }
