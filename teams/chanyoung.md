@@ -12,7 +12,7 @@ Team repository: [nnnrc/Invaders-SDP-24592](https://github.com/nnnrc/Invaders-SD
 | Name | Role | GitHub |
 | --- | --- | --- |
 | Chanyoung Lee | Team Leader / Audio Controls | [leechanyoung0710](https://github.com/leechanyoung0710) |
-| Sihoon Kim | Audio Manager & Integration | [nnnrc](https://github.com/nnnrc) |
+| Sihoon Kim | Audio Manager / Maintainer | [nnnrc](https://github.com/nnnrc) |
 | Heyonmin Jeon | UI & Item Sound Effects | [oihsie](https://github.com/oihsie) |
 | Jaesung Yoo | Audio Controls | [jaesung-rtp](https://github.com/jaesung-rtp) |
 | Jiseok Byun | Game Sound Effects | [jisuk24](https://github.com/jisuk24) |
