@@ -268,8 +268,8 @@ public class GameScreen extends Screen {
 	}
 
 	/**
-	 * Manages collisions between bullets and ships and plays the regular
-	 * enemy destruction sound.
+	 * Manages collisions between bullets and ships and plays destruction
+	 * sounds for regular and bonus enemies.
 	 */
 	private void manageCollisions() {
 		Set<Bullet> recyclable = new HashSet<Bullet>();
@@ -300,6 +300,7 @@ public class GameScreen extends Screen {
 					this.score += this.enemyShipSpecial.getPointValue();
 					this.shipsDestroyed++;
 					this.enemyShipSpecial.destroy();
+					AudioManager.playSFX("audio/sfx/bonus_explosion.wav");
 					this.enemyShipSpecialExplosionCooldown.reset();
 					recyclable.add(bullet);
 				}
