@@ -48,12 +48,14 @@ public class ScoreScreen extends Screen {
 	private int nameCharSelected;
 	/** Time between changes in user selection. */
 	private Cooldown selectionCooldown;
-	/** Sound played when moving the cursor or changing a character. */
+	/** Sound played when moving the cursor between name characters. */
 	private static Clip menuMoveClip;
 	/** Sound played when choosing to play again. */
 	private static Clip menuSelectClip;
 	/** Sound played when returning to the main menu. */
 	private static Clip menuBackClip;
+	/** Sound played when changing a character of the player name. */
+	private static Clip nameCharChangeClip;
 	/**
 	 * Constructor, establishes the properties of the screen.
 	 * 
@@ -97,7 +99,8 @@ public class ScoreScreen extends Screen {
 			menuSelectClip = loadSound("sound/menu_select.wav");
 		if (menuBackClip == null)
 			menuBackClip = loadSound("sound/menu_back.wav");
-
+		if (nameCharChangeClip == null)
+			nameCharChangeClip = loadSound("sound/name_char_change.wav");
 	}
 
 	/**
@@ -154,7 +157,7 @@ public class ScoreScreen extends Screen {
 									== LAST_CHAR ? FIRST_CHAR
 							: this.name[this.nameCharSelected] + 1);
 					this.selectionCooldown.reset();
-					playSound(menuMoveClip);
+					playSound(nameCharChangeClip);
 				}
 				if (inputManager.isKeyDown(KeyEvent.VK_DOWN)) {
 					this.name[this.nameCharSelected] =
@@ -162,7 +165,7 @@ public class ScoreScreen extends Screen {
 									== FIRST_CHAR ? LAST_CHAR
 							: this.name[this.nameCharSelected] - 1);
 					this.selectionCooldown.reset();
-					playSound(menuMoveClip);
+					playSound(nameCharChangeClip);
 				}
 			}
 		}
