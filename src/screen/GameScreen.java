@@ -284,6 +284,7 @@ public class GameScreen extends Screen {
 					if (!this.ship.isDestroyed()) {
 						this.ship.destroy();
 						this.lives--;
+						AudioManager.playSFX("audio/sfx/player_hit.wav");
 						this.logger.info("Hit on player ship, " + this.lives
 								+ " lives remaining.");
 					}
