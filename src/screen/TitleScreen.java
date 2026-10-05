@@ -1,10 +1,7 @@
 package screen;
 
 import java.awt.event.KeyEvent;
-import java.io.File;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+import audio.AudioManager;
 
 import engine.Cooldown;
 import engine.Core;
@@ -22,11 +19,7 @@ public class TitleScreen extends Screen {
 	
 	/** Time between changes in user selection. */
 	private Cooldown selectionCooldown;
-	/** Sound played when the menu selection moves. */
-	private static Clip menuMoveClip;
 
-	/** Sound played when a menu item is selected. */
-	private static Clip menuSelectClip;
 
 	/**
 	 * Constructor, establishes the properties of the screen.
@@ -45,10 +38,7 @@ public class TitleScreen extends Screen {
 		this.returnCode = 2;
 		this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
 		this.selectionCooldown.reset();
-		if (menuMoveClip == null)
-			menuMoveClip = loadSound("sound/menu_move.wav");
-		if (menuSelectClip == null)
-			menuSelectClip = loadSound("sound/menu_select.wav");
+
 	}
 
 	/**
@@ -75,16 +65,16 @@ public class TitleScreen extends Screen {
 					|| inputManager.isKeyDown(KeyEvent.VK_W)) {
 				previousMenuItem();
 				this.selectionCooldown.reset();
-				playSound(menuMoveClip);
+				AudioManager.playSFX("audio/sfx/menu_select.wav");
 			}
 			if (inputManager.isKeyDown(KeyEvent.VK_DOWN)
 					|| inputManager.isKeyDown(KeyEvent.VK_S)) {
 				nextMenuItem();
 				this.selectionCooldown.reset();
-				playSound(menuMoveClip);
+				AudioManager.playSFX("audio/sfx/menu_select.wav");
 			}
 			if (inputManager.isKeyDown(KeyEvent.VK_SPACE)) {
-				playSound(menuSelectClip);
+				AudioManager.playSFX("audio/sfx/menu_select.wav");
 				this.isRunning = false;
 			}
 		}
@@ -126,42 +116,4 @@ public class TitleScreen extends Screen {
 		drawManager.completeDrawing(this);
 	}
 
-	/**
-	 * Plays a sound effect file once.
-	 *
-	 * @param path
-	 *            Path of the WAV file to play.
-	 */
-	/**
-	 * Loads a sound effect file and prepares it for playback.
-	 *
-	 * @param path
-	 *            Path of the WAV file to load.
-	 * @return Prepared clip, or null if loading failed.
-	 */
-	private Clip loadSound(final String path) {
-		try {
-			AudioInputStream audio = AudioSystem.getAudioInputStream(new File(path));
-			Clip clip = AudioSystem.getClip();
-			clip.open(audio);
-			return clip;
-		} catch (Exception e) {
-			logger.warning("Couldn't load sound: " + path);
-			return null;
-		}
-	}
-
-	/**
-	 * Plays a prepared sound effect from the beginning.
-	 *
-	 * @param clip
-	 *            Clip to play.
-	 */
-	private void playSound(final Clip clip) {
-		if (clip == null)
-			return;
-		clip.stop();
-		clip.setFramePosition(0);
-		clip.start();
-	}
 }
