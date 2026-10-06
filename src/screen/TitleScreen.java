@@ -65,13 +65,13 @@ public class TitleScreen extends Screen {
 					|| inputManager.isKeyDown(KeyEvent.VK_W)) {
 				previousMenuItem();
 				this.selectionCooldown.reset();
-				AudioManager.playSFX("audio/sfx/menu_select.wav");
+				AudioManager.playSFX("audio/sfx/menu_move.wav");
 			}
 			if (inputManager.isKeyDown(KeyEvent.VK_DOWN)
 					|| inputManager.isKeyDown(KeyEvent.VK_S)) {
 				nextMenuItem();
 				this.selectionCooldown.reset();
-				AudioManager.playSFX("audio/sfx/menu_select.wav");
+				AudioManager.playSFX("audio/sfx/menu_move.wav");
 			}
 			if (inputManager.isKeyDown(KeyEvent.VK_SPACE)) {
 				AudioManager.playSFX("audio/sfx/menu_select.wav");
