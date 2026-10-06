@@ -4,9 +4,10 @@ Third-party sound effects used in this project and their licenses.
 
 ## menu_back.wav
 
-- Original: "Strange Synth Squelch" by primeval_polypod
-- Source: https://freesound.org/people/primeval_polypod/sounds/159389/
-- License: CC BY 3.0 (https://creativecommons.org/licenses/by/3.0/)
+- Original: "Cancel (Pixel SFX Free)" by heyheytheree
+- Source: https://freesound.org/people/heyheytheree/sounds/871877/
+- License: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+- Changes: None (used as-is, 16-bit / 44.1kHz WAV)
 
 
 
