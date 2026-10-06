@@ -115,7 +115,7 @@ public class ScoreScreen extends Screen {
 					saveScore();
 			} else if (inputManager.isKeyDown(KeyEvent.VK_SPACE)) {
 				// Play again.
-				AudioManager.playSFX("audio/sfx/menu_back.wav");
+				AudioManager.playSFX("audio/sfx/menu_select.wav");
 				this.returnCode = 2;
 				this.isRunning = false;
 				if (this.isNewRecord)
