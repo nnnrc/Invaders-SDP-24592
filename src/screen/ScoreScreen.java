@@ -127,13 +127,13 @@ public class ScoreScreen extends Screen {
 					this.nameCharSelected = this.nameCharSelected == 2 ? 0
 							: this.nameCharSelected + 1;
 					this.selectionCooldown.reset();
-					AudioManager.playSFX("audio/sfx/menu_back.wav");
+					AudioManager.playSFX("audio/sfx/name_cursor_move.wav");
 				}
 				if (inputManager.isKeyDown(KeyEvent.VK_LEFT)) {
 					this.nameCharSelected = this.nameCharSelected == 0 ? 2
 							: this.nameCharSelected - 1;
 					this.selectionCooldown.reset();
-					AudioManager.playSFX("audio/sfx/menu_back.wav");
+					AudioManager.playSFX("audio/sfx/name_cursor_move.wav");
 				}
 				if (inputManager.isKeyDown(KeyEvent.VK_UP)) {
 					this.name[this.nameCharSelected] =
