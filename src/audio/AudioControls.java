@@ -118,4 +118,11 @@ public class AudioControls {
     public static boolean loadMuted() {
         return prefs.getBoolean(MUTED_KEY, false);
     }
+
+    /**
+     * Applies the saved audio settings to the AudioManager.
+     */
+    public static void applySettings() {
+
+    }
 }
