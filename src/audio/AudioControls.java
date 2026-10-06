@@ -123,6 +123,9 @@ public class AudioControls {
      * Applies the saved audio settings to the AudioManager.
      */
     public static void applySettings() {
-
+        AudioManager.setBGMVolume(loadBGMVolume());
+        AudioManager.setSFXVolume(loadSFXVolume());
+        AudioManager.setMuted(loadMuted());
+        logger.info("Applied saved audio settings.");
     }
 }
