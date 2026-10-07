@@ -24,3 +24,25 @@ Third-party sound effects used in this project and their licenses.
 - Source: https://freesound.org/people/Jofae/sounds/379339/
 - License: CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)
 - Changes: Converted to 16-bit / 44.1kHz WAV.
+
+
+## enemy_explosion.wav
+
+- Original: "retro explosion sfx.wav" by stumpbutt
+- Source: https://freesound.org/people/stumpbutt/sounds/381686/
+- License: CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)
+- Changes: Renamed file only; audio unchanged.
+
+## bonus_explosion.wav
+
+- Original: "Retro Super Jump" by Jerimee
+- Source: https://freesound.org/people/Jerimee/sounds/527524/
+- License: CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)
+- Changes: Renamed file only; audio unchanged.
+
+## bonus_appear.wav
+
+- Original: "Teleport Casual" by GameAudio
+- Source: https://freesound.org/people/GameAudio/sounds/220202/
+- License: CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)
+- Changes: Renamed file only; audio unchanged.
