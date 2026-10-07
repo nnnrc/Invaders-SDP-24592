@@ -86,6 +86,8 @@ public class ScoreScreen extends Screen {
 
 		if (this.livesRemaining > 0){
 			AudioManager.playBGM("audio/music_end_victory.wav");
+		} else {
+			AudioManager.playBGM("audio/music_end_defeat.wav");
 		}
 
 
