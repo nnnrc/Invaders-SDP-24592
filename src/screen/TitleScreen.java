@@ -5,6 +5,7 @@ import audio.AudioManager;
 
 import engine.Cooldown;
 import engine.Core;
+import audio.AudioManager;
 
 /**
  * Implements the title screen.
@@ -39,6 +40,7 @@ public class TitleScreen extends Screen {
 		this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
 		this.selectionCooldown.reset();
 
+		AudioManager.playBGM("audio/music_menu.wav");
 	}
 
 	/**
