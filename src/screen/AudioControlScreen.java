@@ -76,6 +76,7 @@ public class AudioControlScreen extends Screen {
 	protected final void update() {
 		super.update();
 
+		draw();
 		if (this.selectionCooldown.checkFinished() && this.inputDelay.checkFinished()) {
 			if (inputManager.isKeyDown(KeyEvent.VK_UP)
 					|| inputManager.isKeyDown(KeyEvent.VK_W)) {
