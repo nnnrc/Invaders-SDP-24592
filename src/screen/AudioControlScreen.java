@@ -1,5 +1,7 @@
 package screen;
 
+import java.awt.event.KeyEvent;
+
 import engine.Cooldown;
 import engine.Core;
 
@@ -56,7 +58,8 @@ public class AudioControlScreen extends Screen {
 		super.update();
 
 		if (this.selectionCooldown.checkFinished() && this.inputDelay.checkFinished()) {
-
+			if (inputManager.isKeyDown(KeyEvent.VK_ESCAPE))
+				this.isRunning = false;
 		}
 	}
 }
