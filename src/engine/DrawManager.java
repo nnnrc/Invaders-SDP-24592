@@ -556,4 +556,23 @@ public final class DrawManager {
 			drawCenteredBigString(screen, "GO!", screen.getHeight() / 2
 					+ fontBigMetrics.getHeight() / 3);
 	}
+
+	/**
+	 * Draws the audio settings screen.
+	 *
+	 * @param screen
+	 *            Screen to draw on.
+	 * @param option
+	 *            Option selected.
+	 * @param bgmVolume
+	 *            Current BGM volume, from 0 to 100.
+	 * @param sfxVolume
+	 *            Current SFX volume, from 0 to 100.
+	 * @param muted
+	 *            If the audio is muted.
+	 */
+	public void drawAudioSettings(final Screen screen, final int option,
+			final int bgmVolume, final int sfxVolume, final boolean muted) {
+
+	}
 }
