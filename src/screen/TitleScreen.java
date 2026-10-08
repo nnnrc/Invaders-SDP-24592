@@ -5,7 +5,6 @@ import audio.AudioManager;
 
 import engine.Cooldown;
 import engine.Core;
-import audio.AudioManager;
 
 /**
  * Implements the title screen.
