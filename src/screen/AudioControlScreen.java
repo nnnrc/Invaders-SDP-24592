@@ -121,6 +121,10 @@ public class AudioControlScreen extends Screen {
 					this.selectionCooldown.reset();
 				}
 			}
+			if (inputManager.isKeyDown(KeyEvent.VK_M)) {
+				toggleMute();
+				this.selectionCooldown.reset();
+			}
 			if (inputManager.isKeyDown(KeyEvent.VK_ESCAPE))
 				this.isRunning = false;
 		}
