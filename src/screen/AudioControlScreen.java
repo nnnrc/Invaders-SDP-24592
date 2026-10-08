@@ -180,9 +180,11 @@ public class AudioControlScreen extends Screen {
 	/**
 	 * Turns the global mute on if it is off, and off if it is on.
 	 * The volume levels are kept, so they come back when unmuted.
+	 * The mute state is saved so it is kept after the game exits.
 	 */
 	private void toggleMute() {
 		AudioManager.setMuted(!AudioManager.isMuted());
+		AudioControls.saveMuted();
 	}
 
 	/**
