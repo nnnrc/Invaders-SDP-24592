@@ -98,12 +98,7 @@ public final class Core {
 			// TODO handle exception
 			e.printStackTrace();
 		}
-		// Load and apply BGM parameters
-		int bgmVol = AudioControls.loadBGMVolume();
-		boolean isMuted = AudioControls.loadMuted();
-
-		AudioManager.setBGMVolume(bgmVol);
-		AudioManager.setMuted(isMuted);
+		
 
 		frame = new Frame(WIDTH, HEIGHT);
 		DrawManager.getInstance().setFrame(frame);
