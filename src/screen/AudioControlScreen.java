@@ -87,7 +87,10 @@ public class AudioControlScreen extends Screen {
 		super.update();
 
 		draw();
+		// Accept input only after the screen has been open for a moment and
+		// the last input's cooldown has finished.
 		if (this.selectionCooldown.checkFinished() && this.inputDelay.checkFinished()) {
+			// Up and down move the selection between the options.
 			if (inputManager.isKeyDown(KeyEvent.VK_UP)
 					|| inputManager.isKeyDown(KeyEvent.VK_W)) {
 				previousOption();
@@ -98,6 +101,7 @@ public class AudioControlScreen extends Screen {
 				nextOption();
 				this.selectionCooldown.reset();
 			}
+			// Left and right change the volume of the selected option only.
 			if (this.selectedOption == BGM_VOLUME_OPTION) {
 				if (inputManager.isKeyDown(KeyEvent.VK_LEFT)
 						|| inputManager.isKeyDown(KeyEvent.VK_A)) {
@@ -122,10 +126,12 @@ public class AudioControlScreen extends Screen {
 					this.selectionCooldown.reset();
 				}
 			}
+			// M toggles the mute state, whichever option is selected.
 			if (inputManager.isKeyDown(KeyEvent.VK_M)) {
 				toggleMute();
 				this.selectionCooldown.reset();
 			}
+			// Esc closes the screen and returns to the caller of open.
 			if (inputManager.isKeyDown(KeyEvent.VK_ESCAPE))
 				this.isRunning = false;
 		}
