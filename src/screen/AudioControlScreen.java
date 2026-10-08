@@ -27,6 +27,15 @@ public class AudioControlScreen extends Screen {
 	/** Number of menu options. */
 	private static final int OPTION_COUNT = 3;
 
+	/** Amount the volume changes with one key press. */
+	private static final int VOLUME_STEP = 5;
+
+	/** Lowest volume. */
+	private static final int MIN_VOLUME = 0;
+
+	/** Highest volume. */
+	private static final int MAX_VOLUME = 100;
+
 	/** Time between changes in user selection. */
 	private Cooldown selectionCooldown;
 
@@ -107,6 +116,19 @@ public class AudioControlScreen extends Screen {
 	 */
 	private void previousOption() {
 		this.selectedOption = (this.selectedOption - 1 + OPTION_COUNT) % OPTION_COUNT;
+	}
+
+	/**
+	 * Changes the background music volume.
+	 * The result is kept between the lowest and the highest volume.
+	 *
+	 * @param amount
+	 *            Amount to add to the volume. Negative to lower it.
+	 */
+	private void changeBGMVolume(final int amount) {
+		int volume = AudioManager.getBGMVolume() + amount;
+		volume = Math.max(MIN_VOLUME, Math.min(MAX_VOLUME, volume));
+		AudioManager.setBGMVolume(volume);
 	}
 
 	/**
