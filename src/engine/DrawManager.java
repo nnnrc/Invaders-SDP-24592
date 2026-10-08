@@ -579,12 +579,16 @@ public final class DrawManager {
 		String returnString = "Press Esc to return";
 		// In the order of the options: BGM volume, SFX volume, mute.
 		String[] optionStrings = { "BGM Volume", "SFX Volume", "Mute" };
+		// Values shown on the right side of each option.
 		String[] valueStrings = { Integer.toString(bgmVolume),
 				Integer.toString(sfxVolume), muted ? "ON" : "OFF" };
+		// Volumes shown as bars. Only the volume options have a bar.
 		int[] barVolumes = { bgmVolume, sfxVolume };
 
+		// Centered column that holds the option names, values, and bars.
 		int columnWidth = 200;
 		int columnLeft = screen.getWidth() / 2 - columnWidth / 2;
+		// Vertical position of the first option and the space between options.
 		int firstOptionY = screen.getHeight() / 3;
 		int optionSpacing = fontRegularMetrics.getHeight() * 4;
 		// Mute is the last option.
@@ -597,26 +601,34 @@ public final class DrawManager {
 		int barGap = 6;
 		int barHeight = 8;
 
+		// Title.
 		backBufferGraphics.setColor(Color.GREEN);
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 8);
 
+		// Control instructions.
 		backBufferGraphics.setColor(Color.GRAY);
 		drawCenteredRegularString(screen, selectString,
 				screen.getHeight() / 5);
 		drawCenteredRegularString(screen, adjustString,
 				screen.getHeight() / 5 + fontRegularMetrics.getHeight());
 
+		// Options, one row each.
 		backBufferGraphics.setFont(fontRegular);
 		for (int i = 0; i < optionStrings.length; i++) {
+			// The selected option is green and the others are white.
 			if (i == option)
 				backBufferGraphics.setColor(Color.GREEN);
 			else
 				backBufferGraphics.setColor(Color.WHITE);
+			// Option name on the left edge of the column.
 			backBufferGraphics.drawString(optionStrings[i], columnLeft,
 					firstOptionY + optionSpacing * i);
+			// Value centered in the value space.
 			backBufferGraphics.drawString(valueStrings[i], valueCenter
 					- fontRegularMetrics.stringWidth(valueStrings[i]) / 2,
 					firstOptionY + optionSpacing * i);
+			// Brackets at fixed positions around the volume values, to show
+			// that they can be changed with Left and Right.
 			if (i != muteIndex) {
 				backBufferGraphics.drawString("<", valueLeft,
 						firstOptionY + optionSpacing * i);
@@ -633,6 +645,7 @@ public final class DrawManager {
 								- fontRegularMetrics.getAscent() / 2,
 						numberWidth + 4, 2);
 			}
+			// Volume bar below the volume names, gray while muted.
 			if (i < barVolumes.length) {
 				Color barColor;
 				if (muted)
@@ -647,6 +660,7 @@ public final class DrawManager {
 			}
 		}
 
+		// Return instruction near the bottom.
 		backBufferGraphics.setColor(Color.GRAY);
 		drawCenteredRegularString(screen, returnString,
 				screen.getHeight() / 8 * 7);
