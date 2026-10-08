@@ -76,6 +76,16 @@ public class AudioControlScreen extends Screen {
 		super.update();
 
 		if (this.selectionCooldown.checkFinished() && this.inputDelay.checkFinished()) {
+			if (inputManager.isKeyDown(KeyEvent.VK_UP)
+					|| inputManager.isKeyDown(KeyEvent.VK_W)) {
+				previousOption();
+				this.selectionCooldown.reset();
+			}
+			if (inputManager.isKeyDown(KeyEvent.VK_DOWN)
+					|| inputManager.isKeyDown(KeyEvent.VK_S)) {
+				nextOption();
+				this.selectionCooldown.reset();
+			}
 			if (inputManager.isKeyDown(KeyEvent.VK_ESCAPE))
 				this.isRunning = false;
 		}
