@@ -578,13 +578,19 @@ public final class DrawManager {
 		String adjustString = "Left/Right: adjust  M: mute";
 		// In the order of the options: BGM volume, SFX volume, mute.
 		String[] optionStrings = { "BGM Volume", "SFX Volume", "Mute" };
-		String[] valueStrings = { "< " + bgmVolume + " >",
-				"< " + sfxVolume + " >" };
+		String[] valueStrings = { Integer.toString(bgmVolume),
+				Integer.toString(sfxVolume), muted ? "ON" : "OFF" };
 
 		int columnWidth = 200;
 		int columnLeft = screen.getWidth() / 2 - columnWidth / 2;
 		int firstOptionY = screen.getHeight() / 3;
 		int optionSpacing = fontRegularMetrics.getHeight() * 3;
+		// Mute is the last option.
+		int muteIndex = optionStrings.length - 1;
+		// Space taken by the widest value, so the brackets do not move.
+		int valueRight = columnLeft + columnWidth;
+		int valueLeft = valueRight - fontRegularMetrics.stringWidth("< 100 >");
+		int valueCenter = (valueLeft + valueRight) / 2;
 
 		backBufferGraphics.setColor(Color.GREEN);
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 8);
@@ -603,11 +609,16 @@ public final class DrawManager {
 				backBufferGraphics.setColor(Color.WHITE);
 			backBufferGraphics.drawString(optionStrings[i], columnLeft,
 					firstOptionY + optionSpacing * i);
-			if (i < valueStrings.length)
-				backBufferGraphics.drawString(valueStrings[i], columnLeft
-						+ columnWidth
-						- fontRegularMetrics.stringWidth(valueStrings[i]),
+			backBufferGraphics.drawString(valueStrings[i], valueCenter
+					- fontRegularMetrics.stringWidth(valueStrings[i]) / 2,
+					firstOptionY + optionSpacing * i);
+			if (i != muteIndex) {
+				backBufferGraphics.drawString("<", valueLeft,
 						firstOptionY + optionSpacing * i);
+				backBufferGraphics.drawString(">", valueRight
+						- fontRegularMetrics.stringWidth(">"),
+						firstOptionY + optionSpacing * i);
+			}
 		}
 	}
 }
