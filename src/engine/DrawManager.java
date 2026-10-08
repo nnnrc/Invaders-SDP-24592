@@ -621,4 +621,33 @@ public final class DrawManager {
 			}
 		}
 	}
+
+	/**
+	 * Draws a horizontal volume bar.
+	 * The whole bar is drawn in dark gray, and the part up to the volume is
+	 * filled with the given color.
+	 *
+	 * @param positionX
+	 *            Left edge of the bar.
+	 * @param positionY
+	 *            Top edge of the bar.
+	 * @param width
+	 *            Width of the bar at volume 100.
+	 * @param height
+	 *            Height of the bar.
+	 * @param volume
+	 *            Volume to show, from 0 to 100.
+	 * @param color
+	 *            Color of the filled part.
+	 */
+	private void drawVolumeBar(final int positionX, final int positionY,
+			final int width, final int height, final int volume,
+			final Color color) {
+		backBufferGraphics.setColor(Color.DARK_GRAY);
+		backBufferGraphics.fillRect(positionX, positionY, width, height);
+
+		backBufferGraphics.setColor(color);
+		backBufferGraphics.fillRect(positionX, positionY,
+				width * volume / 100, height);
+	}
 }
