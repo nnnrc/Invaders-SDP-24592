@@ -2,6 +2,7 @@ package screen;
 
 import java.awt.event.KeyEvent;
 
+import audio.AudioManager;
 import engine.Cooldown;
 import engine.Core;
 
@@ -105,5 +106,19 @@ public class AudioControlScreen extends Screen {
 	 */
 	private void previousOption() {
 		this.selectedOption = (this.selectedOption - 1 + OPTION_COUNT) % OPTION_COUNT;
+	}
+
+	/**
+	 * Draws the elements associated with the screen.
+	 * The current settings are read from the AudioManager.
+	 */
+	private void draw() {
+		drawManager.initDrawing(this);
+
+		drawManager.drawAudioSettings(this, this.selectedOption,
+				AudioManager.getBGMVolume(), AudioManager.getSFXVolume(),
+				AudioManager.isMuted());
+
+		drawManager.completeDrawing(this);
 	}
 }
