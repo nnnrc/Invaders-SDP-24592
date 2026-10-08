@@ -584,7 +584,7 @@ public final class DrawManager {
 		int columnWidth = 200;
 		int columnLeft = screen.getWidth() / 2 - columnWidth / 2;
 		int firstOptionY = screen.getHeight() / 3;
-		int optionSpacing = fontRegularMetrics.getHeight() * 3;
+		int optionSpacing = fontRegularMetrics.getHeight() * 4;
 		// Mute is the last option.
 		int muteIndex = optionStrings.length - 1;
 		// Space taken by the widest value, so the brackets do not move.
