@@ -2,6 +2,7 @@ package screen;
 
 import java.awt.event.KeyEvent;
 
+import audio.AudioControls;
 import audio.AudioManager;
 import engine.Cooldown;
 import engine.Core;
@@ -148,7 +149,8 @@ public class AudioControlScreen extends Screen {
 
 	/**
 	 * Changes the background music volume.
-	 * The result is kept between the lowest and the highest volume.
+	 * The result is kept between the lowest and the highest volume, and is
+	 * saved so it is kept after the game exits.
 	 *
 	 * @param amount
 	 *            Amount to add to the volume. Negative to lower it.
@@ -157,6 +159,7 @@ public class AudioControlScreen extends Screen {
 		int volume = AudioManager.getBGMVolume() + amount;
 		volume = Math.max(MIN_VOLUME, Math.min(MAX_VOLUME, volume));
 		AudioManager.setBGMVolume(volume);
+		AudioControls.saveBGMVolume();
 	}
 
 	/**
