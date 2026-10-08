@@ -578,6 +578,8 @@ public final class DrawManager {
 		String adjustString = "Left/Right: adjust  M: mute";
 		// In the order of the options: BGM volume, SFX volume, mute.
 		String[] optionStrings = { "BGM Volume", "SFX Volume", "Mute" };
+		String[] valueStrings = { "< " + bgmVolume + " >",
+				"< " + sfxVolume + " >" };
 
 		int columnWidth = 200;
 		int columnLeft = screen.getWidth() / 2 - columnWidth / 2;
@@ -601,6 +603,11 @@ public final class DrawManager {
 				backBufferGraphics.setColor(Color.WHITE);
 			backBufferGraphics.drawString(optionStrings[i], columnLeft,
 					firstOptionY + optionSpacing * i);
+			if (i < valueStrings.length)
+				backBufferGraphics.drawString(valueStrings[i], columnLeft
+						+ columnWidth
+						- fontRegularMetrics.stringWidth(valueStrings[i]),
+						firstOptionY + optionSpacing * i);
 		}
 	}
 }
