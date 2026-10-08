@@ -623,11 +623,27 @@ public final class DrawManager {
 						- fontRegularMetrics.stringWidth(">"),
 						firstOptionY + optionSpacing * i);
 			}
-			if (i < barVolumes.length)
+			// Strike through the volume numbers while muted.
+			if (muted && i != muteIndex) {
+				int numberWidth = fontRegularMetrics
+						.stringWidth(valueStrings[i]);
+				backBufferGraphics.fillRect(valueCenter - numberWidth / 2 - 2,
+						firstOptionY + optionSpacing * i
+								- fontRegularMetrics.getAscent() / 2,
+						numberWidth + 4, 2);
+			}
+			if (i < barVolumes.length) {
+				Color barColor;
+				if (muted)
+					barColor = Color.GRAY;
+				else if (i == option)
+					barColor = Color.GREEN;
+				else
+					barColor = Color.WHITE;
 				drawVolumeBar(columnLeft,
 						firstOptionY + optionSpacing * i + barGap,
-						columnWidth, barHeight, barVolumes[i],
-						i == option ? Color.GREEN : Color.WHITE);
+						columnWidth, barHeight, barVolumes[i], barColor);
+			}
 		}
 	}
 
