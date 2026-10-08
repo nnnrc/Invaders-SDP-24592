@@ -164,7 +164,8 @@ public class AudioControlScreen extends Screen {
 
 	/**
 	 * Changes the sound effect volume.
-	 * The result is kept between the lowest and the highest volume.
+	 * The result is kept between the lowest and the highest volume, and is
+	 * saved so it is kept after the game exits.
 	 *
 	 * @param amount
 	 *            Amount to add to the volume. Negative to lower it.
@@ -173,6 +174,7 @@ public class AudioControlScreen extends Screen {
 		int volume = AudioManager.getSFXVolume() + amount;
 		volume = Math.max(MIN_VOLUME, Math.min(MAX_VOLUME, volume));
 		AudioManager.setSFXVolume(volume);
+		AudioControls.saveSFXVolume();
 	}
 
 	/**
