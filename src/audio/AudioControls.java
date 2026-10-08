@@ -34,15 +34,9 @@ public class AudioControls {
     /**
      * Saves the background music volume.
      * The current volume is read from the AudioManager.
-     * Invalid volume values are logged and replaced with the default volume.
      */
     public static void saveBGMVolume() {
         int vol = AudioManager.getBGMVolume();
-
-        if (vol < 0 || vol > 100) {
-            logger.warning("BGM volume " + vol + " is invalid. Saving " + DEFAULT_VOLUME + ".");
-            vol = DEFAULT_VOLUME;
-        }
 
         prefs.putInt(BGM_VOLUME_KEY, vol);
         logger.info("Saved BGM volume " + vol);
@@ -51,15 +45,9 @@ public class AudioControls {
     /**
      * Saves the sound effect volume.
      * The current volume is read from the AudioManager.
-     * Invalid volume values are logged and replaced with the default volume.
      */
     public static void saveSFXVolume() {
         int vol = AudioManager.getSFXVolume();
-
-        if (vol < 0 || vol > 100) {
-            logger.warning("SFX volume " + vol + " is invalid. Saving " + DEFAULT_VOLUME + ".");
-            vol = DEFAULT_VOLUME;
-        }
 
         prefs.putInt(SFX_VOLUME_KEY, vol);
         logger.info("Saved SFX volume " + vol);
