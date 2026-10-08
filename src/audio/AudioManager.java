@@ -17,6 +17,7 @@ public class AudioManager {
     /** Application logger. */
     private static Logger logger;
 
+    /** Shared audio resource cache for background music and sound effects. */
     private static AudioCache audioCache;
 
     /** Clip for the current background music. */
@@ -365,6 +366,12 @@ public class AudioManager {
         return muted;
     }
 
+    /**
+     * Stops and closes the specified clip, logging failures without propagating them.
+     * Closing is attempted even if stopping fails. A null clip is ignored.
+     *
+     * @param clip the clip to release, or null
+     */
     private static void releaseClip(Clip clip) {
         if (clip == null) return;
 
