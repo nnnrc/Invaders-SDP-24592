@@ -1,10 +1,19 @@
 package screen;
 
+import engine.Cooldown;
+import engine.Core;
+
 /**
  * Implements the audio settings screen.
  * Lets the player change the BGM volume, the SFX volume, and the mute state.
  */
 public class AudioControlScreen extends Screen {
+
+	/** Milliseconds between changes in user selection. */
+	private static final int SELECTION_TIME = 200;
+
+	/** Time between changes in user selection. */
+	private Cooldown selectionCooldown;
 
 	/**
 	 * Constructor, establishes the properties of the screen.
@@ -18,6 +27,9 @@ public class AudioControlScreen extends Screen {
 	 */
 	public AudioControlScreen(final int width, final int height, final int fps) {
 		super(width, height, fps);
+
+		this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
+		this.selectionCooldown.reset();
 	}
 
 	/**
@@ -35,5 +47,16 @@ public class AudioControlScreen extends Screen {
 		AudioControlScreen screen = new AudioControlScreen(width, height, fps);
 		screen.initialize();
 		screen.run();
+	}
+
+	/**
+	 * Updates the elements on screen and checks for events.
+	 */
+	protected final void update() {
+		super.update();
+
+		if (this.selectionCooldown.checkFinished() && this.inputDelay.checkFinished()) {
+
+		}
 	}
 }
