@@ -574,8 +574,16 @@ public final class DrawManager {
 	public void drawAudioSettings(final Screen screen, final int option,
 			final int bgmVolume, final int sfxVolume, final boolean muted) {
 		String titleString = "Audio Settings";
+		String selectString = "Up/Down: select";
+		String adjustString = "Left/Right: adjust  M: mute";
 
 		backBufferGraphics.setColor(Color.GREEN);
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 8);
+
+		backBufferGraphics.setColor(Color.GRAY);
+		drawCenteredRegularString(screen, selectString,
+				screen.getHeight() / 5);
+		drawCenteredRegularString(screen, adjustString,
+				screen.getHeight() / 5 + fontRegularMetrics.getHeight());
 	}
 }
