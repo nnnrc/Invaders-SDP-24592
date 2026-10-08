@@ -13,7 +13,8 @@ import screen.HighScoreScreen;
 import screen.ScoreScreen;
 import screen.Screen;
 import screen.TitleScreen;
-
+import audio.AudioControls;
+import audio.AudioManager;
 /**
  * Implements core game logic.
  * 
@@ -97,6 +98,7 @@ public final class Core {
 			// TODO handle exception
 			e.printStackTrace();
 		}
+
 
 		frame = new Frame(WIDTH, HEIGHT);
 		DrawManager.getInstance().setFrame(frame);

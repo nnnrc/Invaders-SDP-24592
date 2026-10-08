@@ -14,6 +14,7 @@ import entity.EnemyShip;
 import entity.EnemyShipFormation;
 import entity.Entity;
 import entity.Ship;
+import audio.AudioManager;
 
 /**
  * Implements the game screen, where the action happens.
@@ -125,6 +126,8 @@ public class GameScreen extends Screen {
 		this.gameStartTime = System.currentTimeMillis();
 		this.inputDelay = Core.getCooldown(INPUT_DELAY);
 		this.inputDelay.reset();
+
+		AudioManager.playBGM("audio/bgm/music_game.wav");
 	}
 
 	/**
