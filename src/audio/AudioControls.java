@@ -33,11 +33,12 @@ public class AudioControls {
 
     /**
      * Saves the background music volume.
+     * The current volume is read from the AudioManager.
      * Invalid volume values are logged and replaced with the default volume.
-     *
-     * @param vol the volume level, from 0 to 100
      */
-    public static void saveBGMVolume(int vol) {
+    public static void saveBGMVolume() {
+        int vol = AudioManager.getBGMVolume();
+
         if (vol < 0 || vol > 100) {
             logger.warning("BGM volume " + vol + " is invalid. Saving " + DEFAULT_VOLUME + ".");
             vol = DEFAULT_VOLUME;
@@ -49,11 +50,12 @@ public class AudioControls {
 
     /**
      * Saves the sound effect volume.
+     * The current volume is read from the AudioManager.
      * Invalid volume values are logged and replaced with the default volume.
-     *
-     * @param vol the volume level, from 0 to 100
      */
-    public static void saveSFXVolume(int vol) {
+    public static void saveSFXVolume() {
+        int vol = AudioManager.getSFXVolume();
+
         if (vol < 0 || vol > 100) {
             logger.warning("SFX volume " + vol + " is invalid. Saving " + DEFAULT_VOLUME + ".");
             vol = DEFAULT_VOLUME;
@@ -65,10 +67,11 @@ public class AudioControls {
 
     /**
      * Saves the global mute state.
-     *
-     * @param muted true if audio is muted, otherwise false
+     * The current mute state is read from the AudioManager.
      */
-    public static void saveMuted(boolean muted) {
+    public static void saveMuted() {
+        boolean muted = AudioManager.isMuted();
+
         prefs.putBoolean(MUTED_KEY, muted);
         logger.info("Saved mute state " + muted);
     }
