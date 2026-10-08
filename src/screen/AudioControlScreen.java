@@ -80,4 +80,20 @@ public class AudioControlScreen extends Screen {
 				this.isRunning = false;
 		}
 	}
+
+	/**
+	 * Shifts the focus to the next menu option.
+	 * Wraps around to the first option after the last one.
+	 */
+	private void nextOption() {
+		this.selectedOption = (this.selectedOption + 1) % OPTION_COUNT;
+	}
+
+	/**
+	 * Shifts the focus to the previous menu option.
+	 * Wraps around to the last option before the first one.
+	 */
+	private void previousOption() {
+		this.selectedOption = (this.selectedOption - 1 + OPTION_COUNT) % OPTION_COUNT;
+	}
 }
