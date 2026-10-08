@@ -14,8 +14,23 @@ public class AudioControlScreen extends Screen {
 	/** Milliseconds between changes in user selection. */
 	private static final int SELECTION_TIME = 200;
 
+	/** Menu option for the background music volume. */
+	private static final int BGM_VOLUME_OPTION = 0;
+
+	/** Menu option for the sound effect volume. */
+	private static final int SFX_VOLUME_OPTION = 1;
+
+	/** Menu option for the global mute state. */
+	private static final int MUTE_OPTION = 2;
+
+	/** Number of menu options. */
+	private static final int OPTION_COUNT = 3;
+
 	/** Time between changes in user selection. */
 	private Cooldown selectionCooldown;
+
+	/** Currently selected menu option. */
+	private int selectedOption;
 
 	/**
 	 * Constructor, establishes the properties of the screen.
@@ -32,6 +47,9 @@ public class AudioControlScreen extends Screen {
 
 		this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
 		this.selectionCooldown.reset();
+
+		// Defaults to the BGM volume.
+		this.selectedOption = BGM_VOLUME_OPTION;
 	}
 
 	/**
