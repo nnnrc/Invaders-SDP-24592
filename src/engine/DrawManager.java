@@ -580,6 +580,7 @@ public final class DrawManager {
 		String[] optionStrings = { "BGM Volume", "SFX Volume", "Mute" };
 		String[] valueStrings = { Integer.toString(bgmVolume),
 				Integer.toString(sfxVolume), muted ? "ON" : "OFF" };
+		int[] barVolumes = { bgmVolume, sfxVolume };
 
 		int columnWidth = 200;
 		int columnLeft = screen.getWidth() / 2 - columnWidth / 2;
@@ -591,6 +592,9 @@ public final class DrawManager {
 		int valueRight = columnLeft + columnWidth;
 		int valueLeft = valueRight - fontRegularMetrics.stringWidth("< 100 >");
 		int valueCenter = (valueLeft + valueRight) / 2;
+		// Volume bars are drawn right below the volume names.
+		int barGap = 6;
+		int barHeight = 8;
 
 		backBufferGraphics.setColor(Color.GREEN);
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 8);
@@ -619,6 +623,11 @@ public final class DrawManager {
 						- fontRegularMetrics.stringWidth(">"),
 						firstOptionY + optionSpacing * i);
 			}
+			if (i < barVolumes.length)
+				drawVolumeBar(columnLeft,
+						firstOptionY + optionSpacing * i + barGap,
+						columnWidth, barHeight, barVolumes[i],
+						i == option ? Color.GREEN : Color.WHITE);
 		}
 	}
 
