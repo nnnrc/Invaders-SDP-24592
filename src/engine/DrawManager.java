@@ -576,6 +576,13 @@ public final class DrawManager {
 		String titleString = "Audio Settings";
 		String selectString = "Up/Down: select";
 		String adjustString = "Left/Right: adjust  M: mute";
+		// In the order of the options: BGM volume, SFX volume, mute.
+		String[] optionStrings = { "BGM Volume", "SFX Volume", "Mute" };
+
+		int columnWidth = 200;
+		int columnLeft = screen.getWidth() / 2 - columnWidth / 2;
+		int firstOptionY = screen.getHeight() / 3;
+		int optionSpacing = fontRegularMetrics.getHeight() * 3;
 
 		backBufferGraphics.setColor(Color.GREEN);
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 8);
@@ -585,5 +592,15 @@ public final class DrawManager {
 				screen.getHeight() / 5);
 		drawCenteredRegularString(screen, adjustString,
 				screen.getHeight() / 5 + fontRegularMetrics.getHeight());
+
+		backBufferGraphics.setFont(fontRegular);
+		for (int i = 0; i < optionStrings.length; i++) {
+			if (i == option)
+				backBufferGraphics.setColor(Color.GREEN);
+			else
+				backBufferGraphics.setColor(Color.WHITE);
+			backBufferGraphics.drawString(optionStrings[i], columnLeft,
+					firstOptionY + optionSpacing * i);
+		}
 	}
 }
