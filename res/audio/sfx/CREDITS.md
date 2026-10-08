@@ -49,3 +49,19 @@ Third-party sound effects used in this project and their licenses.
 - Source: https://freesound.org/people/TheDweebMan/sounds/277215/
 - License: CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)
 - Changes: Renamed to item_coin.wav.
+
+
+## countdown_beep.wav
+
+- Original: "beep.wav" by jeckkech
+- Source: https://freesound.org/people/jeckkech/sounds/391650/
+- License: CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)
+- Changes: Renamed to countdown_beep.wav.
+
+
+## countdown_go.wav
+
+- Original: "Game Start" by CasperThePancake
+- Source: https://freesound.org/people/CasperThePancake/sounds/521939/
+- License: CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)
+- Changes: Renamed to countdown_go.wav.
