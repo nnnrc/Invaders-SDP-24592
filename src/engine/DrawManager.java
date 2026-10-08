@@ -576,6 +576,7 @@ public final class DrawManager {
 		String titleString = "Audio Settings";
 		String selectString = "Up/Down: select";
 		String adjustString = "Left/Right: adjust  M: mute";
+		String returnString = "Press Esc to return";
 		// In the order of the options: BGM volume, SFX volume, mute.
 		String[] optionStrings = { "BGM Volume", "SFX Volume", "Mute" };
 		String[] valueStrings = { Integer.toString(bgmVolume),
@@ -645,6 +646,10 @@ public final class DrawManager {
 						columnWidth, barHeight, barVolumes[i], barColor);
 			}
 		}
+
+		backBufferGraphics.setColor(Color.GRAY);
+		drawCenteredRegularString(screen, returnString,
+				screen.getHeight() / 8 * 7);
 	}
 
 	/**
