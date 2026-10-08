@@ -33,14 +33,14 @@ public class AudioControls {
 
     /**
      * Saves the background music volume.
-     * Invalid volume values are logged and ignored.
+     * Invalid volume values are logged and replaced with the default volume.
      *
      * @param vol the volume level, from 0 to 100
      */
     public static void saveBGMVolume(int vol) {
         if (vol < 0 || vol > 100) {
-            logger.warning("Volume must be an integer between 0 and 100.");
-            return;
+            logger.warning("BGM volume " + vol + " is invalid. Saving " + DEFAULT_VOLUME + ".");
+            vol = DEFAULT_VOLUME;
         }
 
         prefs.putInt(BGM_VOLUME_KEY, vol);
@@ -49,14 +49,14 @@ public class AudioControls {
 
     /**
      * Saves the sound effect volume.
-     * Invalid volume values are logged and ignored.
+     * Invalid volume values are logged and replaced with the default volume.
      *
      * @param vol the volume level, from 0 to 100
      */
     public static void saveSFXVolume(int vol) {
         if (vol < 0 || vol > 100) {
-            logger.warning("Volume must be an integer between 0 and 100.");
-            return;
+            logger.warning("SFX volume " + vol + " is invalid. Saving " + DEFAULT_VOLUME + ".");
+            vol = DEFAULT_VOLUME;
         }
 
         prefs.putInt(SFX_VOLUME_KEY, vol);
