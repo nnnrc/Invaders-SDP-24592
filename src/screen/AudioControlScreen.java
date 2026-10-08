@@ -109,6 +109,18 @@ public class AudioControlScreen extends Screen {
 					this.selectionCooldown.reset();
 				}
 			}
+			if (this.selectedOption == SFX_VOLUME_OPTION) {
+				if (inputManager.isKeyDown(KeyEvent.VK_LEFT)
+						|| inputManager.isKeyDown(KeyEvent.VK_A)) {
+					changeSFXVolume(-VOLUME_STEP);
+					this.selectionCooldown.reset();
+				}
+				if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)
+						|| inputManager.isKeyDown(KeyEvent.VK_D)) {
+					changeSFXVolume(VOLUME_STEP);
+					this.selectionCooldown.reset();
+				}
+			}
 			if (inputManager.isKeyDown(KeyEvent.VK_ESCAPE))
 				this.isRunning = false;
 		}
