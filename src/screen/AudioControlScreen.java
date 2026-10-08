@@ -97,6 +97,18 @@ public class AudioControlScreen extends Screen {
 				nextOption();
 				this.selectionCooldown.reset();
 			}
+			if (this.selectedOption == BGM_VOLUME_OPTION) {
+				if (inputManager.isKeyDown(KeyEvent.VK_LEFT)
+						|| inputManager.isKeyDown(KeyEvent.VK_A)) {
+					changeBGMVolume(-VOLUME_STEP);
+					this.selectionCooldown.reset();
+				}
+				if (inputManager.isKeyDown(KeyEvent.VK_RIGHT)
+						|| inputManager.isKeyDown(KeyEvent.VK_D)) {
+					changeBGMVolume(VOLUME_STEP);
+					this.selectionCooldown.reset();
+				}
+			}
 			if (inputManager.isKeyDown(KeyEvent.VK_ESCAPE))
 				this.isRunning = false;
 		}
