@@ -169,6 +169,14 @@ public class AudioControlScreen extends Screen {
 	}
 
 	/**
+	 * Turns the global mute on if it is off, and off if it is on.
+	 * The volume levels are kept, so they come back when unmuted.
+	 */
+	private void toggleMute() {
+		AudioManager.setMuted(!AudioManager.isMuted());
+	}
+
+	/**
 	 * Draws the elements associated with the screen.
 	 * The current settings are read from the AudioManager.
 	 */
