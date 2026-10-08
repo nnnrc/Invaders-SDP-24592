@@ -127,7 +127,7 @@ public class GameScreen extends Screen {
 		this.inputDelay = Core.getCooldown(INPUT_DELAY);
 		this.inputDelay.reset();
 
-		AudioManager.playBGM("audio/music_game.wav");
+		AudioManager.playBGM("audio/bgm/music_game.wav");
 	}
 
 	/**

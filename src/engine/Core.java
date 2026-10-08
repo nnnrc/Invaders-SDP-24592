@@ -98,7 +98,7 @@ public final class Core {
 			// TODO handle exception
 			e.printStackTrace();
 		}
-		
+
 
 		frame = new Frame(WIDTH, HEIGHT);
 		DrawManager.getInstance().setFrame(frame);
