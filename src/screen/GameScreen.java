@@ -208,6 +208,9 @@ public class GameScreen extends Screen {
 		if ((this.enemyShipFormation.isEmpty() || this.lives == 0)
 				&& !this.levelFinished) {
 			this.levelFinished = true;
+			if (this.lives > 0) {
+				AudioManager.playSFX("audio/sfx/level_clear.wav");
+			}
 			this.screenFinishedCooldown.reset();
 		}
 
