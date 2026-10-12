@@ -72,6 +72,8 @@ public class GameScreen extends Screen {
 	private boolean levelFinished;
 	/** Checks if a bonus life is received. */
 	private boolean bonusLife;
+	/** Last countdown number that played a sound. */
+	private int lastCountdown = -1;
 
 	/**
 	 * Constructor, establishes the properties of the screen.
@@ -131,6 +133,7 @@ public class GameScreen extends Screen {
 		if (this.bonusLife) {
 			AudioManager.playSFX("audio/sfx/bonus_life.wav");
 		}
+		AudioManager.playBGM("audio/bgm/music_game.wav");
 	}
 
 	/**
@@ -252,6 +255,7 @@ public class GameScreen extends Screen {
 			int countdown = (int) ((INPUT_DELAY
 					- (System.currentTimeMillis()
 							- this.gameStartTime)) / 1000);
+			playCountdownSound(countdown);
 			drawManager.drawCountDown(this, this.level, countdown,
 					this.bonusLife);
 			drawManager.drawHorizontalLine(this, this.height / 2 - this.height
@@ -354,5 +358,21 @@ public class GameScreen extends Screen {
 	public final GameState getGameState() {
 		return new GameState(this.level, this.score, this.lives,
 				this.bulletsShot, this.shipsDestroyed);
+	}
+
+	/**
+	 * Plays the countdown sound once each time the countdown number changes.
+	 *
+	 * @param countdown
+	 *            Number currently shown in the countdown.
+	 */
+	private void playCountdownSound(final int countdown) {
+		if (countdown == this.lastCountdown)
+			return;
+		this.lastCountdown = countdown;
+		if (countdown == 0)
+			AudioManager.playSFX("audio/sfx/countdown_go.wav");
+		else if (countdown <= 3)
+			AudioManager.playSFX("audio/sfx/countdown_beep.wav");
 	}
 }
