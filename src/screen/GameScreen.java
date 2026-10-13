@@ -176,10 +176,12 @@ public class GameScreen extends Screen {
 				if (moveLeft && !isLeftBorder) {
 					this.ship.moveLeft();
 				}
+
 				if (inputManager.isKeyDown(
 						ControlsConfig.getKey(ControlsConfig.FIRE))) {
 					if (this.ship.shoot(this.bullets)) {
 						this.bulletsShot++;
+						AudioManager.playSFX("audio/sfx/player_shoot.wav");
 					}
 				}
 			}
@@ -298,7 +300,8 @@ public class GameScreen extends Screen {
 					recyclable.add(bullet);
 					if (!this.ship.isDestroyed()) {
 						this.ship.destroy();
-						this.lives--;
+						this.lives = Math.max(0, this.lives - 1);
+						AudioManager.playSFX("audio/sfx/player_hit.wav");
 						this.logger.info("Hit on player ship, " + this.lives
 								+ " lives remaining.");
 					}
