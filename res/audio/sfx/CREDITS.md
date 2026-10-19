@@ -76,7 +76,7 @@ documented below for completeness.
 - Original: "retro explosion sfx.wav" by stumpbutt
 - Source: https://freesound.org/people/stumpbutt/sounds/381686/
 - License: CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)
-- Changes: Renamed file and increased volume.
+- Changes: Renamed file and increased volume; duplicated the mono channel into both stereo channels, preserving 16-bit / 44.1kHz PCM WAV.
 
 
 ## bonus_explosion.wav
@@ -84,7 +84,7 @@ documented below for completeness.
 - Original: "Retro Super Jump" by Jerimee
 - Source: https://freesound.org/people/Jerimee/sounds/527524/
 - License: CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)
-- Changes: Renamed file and increased volume.
+- Changes: Renamed file and increased volume; resampled from 22.05kHz to 44.1kHz and duplicated the mono channel into both stereo channels (16-bit PCM WAV).
 
 
 ## bonus_appear.wav
@@ -100,7 +100,7 @@ documented below for completeness.
 - Original: "Shoot 3" from "8-Bit Sound Effect Pack (Vol. 001)" by Deva (@Shades)
 - Source: https://opengameart.org/content/8-bit-sound-effect-pack-vol-001
 - License: CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)
-- Changes: Renamed to enemy_shoot.wav; audio unchanged.
+- Changes: Renamed to enemy_shoot.wav; duplicated the mono channel into both stereo channels, preserving 16-bit / 44.1kHz PCM WAV.
 
 
 ## player_hit.wav
@@ -108,7 +108,7 @@ documented below for completeness.
 - Original: "Hit 1" from "8-Bit Sound Effect Pack (Vol. 001)" by Deva (@Shades)
 - Source: https://opengameart.org/content/8-bit-sound-effect-pack-vol-001
 - License: CC0 1.0 (https://creativecommons.org/publicdomain/zero/1.0/)
-- Changes: Renamed to player_hit.wav; audio unchanged.
+- Changes: Renamed to player_hit.wav; duplicated the mono channel into both stereo channels, preserving 16-bit / 44.1kHz PCM WAV.
 
 
 ## player_shoot.wav
@@ -116,7 +116,7 @@ documented below for completeness.
 - Original: Created specifically for this project (no third-party source)
 - Source: Original sound created for this project
 - License: No third-party license; original work for this project
-- Changes: None.
+- Changes: Duplicated the mono channel into both stereo channels, preserving 16-bit / 44.1kHz PCM WAV.
 
 
 ## level_clear.wav
@@ -124,7 +124,7 @@ documented below for completeness.
 - Original: Created specifically for this project (no third-party source)
 - Source: Original sound created for this project
 - License: No third-party license; original work for this project
-- Changes: None.
+- Changes: Duplicated the mono channel into both stereo channels, preserving 16-bit / 44.1kHz PCM WAV.
 
 
 ## bonus_life.wav
@@ -132,7 +132,7 @@ documented below for completeness.
 - Original: Created specifically for this project (no third-party source)
 - Source: Original sound created for this project
 - License: No third-party license; original work for this project
-- Changes: None.
+- Changes: Duplicated the mono channel into both stereo channels, preserving 16-bit / 44.1kHz PCM WAV.
 
 
 ## item_pickup.wav
@@ -196,4 +196,4 @@ documented below for completeness.
 - Original: Created for this project (synthesized short metallic deflect sound, no third-party source)
 - Source: Generated with a Python (NumPy) script, made with AI assistance
 - License: No third-party license; original work for this project
-- Changes: None (16-bit / 44.1kHz mono WAV)
+- Changes: Duplicated the mono channel into both stereo channels, preserving 16-bit / 44.1kHz PCM WAV.
