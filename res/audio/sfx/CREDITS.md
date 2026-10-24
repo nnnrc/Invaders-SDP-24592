@@ -191,6 +191,14 @@ documented below for completeness.
 - Changes: None (16-bit / 44.1kHz mono WAV)
 
 
+## boss_hit.wav
+
+- Original: "laser" by Gumichan01
+- Source: https://opengameart.org/content/shots
+- License: CC-BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/)
+- Changes: None
+
+
 ## item_grenade_explode.wav
 
 - Original: Created for this project (synthesized firework-like burst, no third-party source)

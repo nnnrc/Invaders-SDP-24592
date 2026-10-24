@@ -153,6 +153,8 @@ public class GameScreen extends Screen {
     /** Twin Cannon item falling on screen, collected by shooting it. */
     private TwinCanon twinCanonItem;
 
+	private boolean bossMusicTriggered = false;
+
 	/** Player ship type selected before the stage started. */
 	private ShipType shipType;
     /** Current game difficulty settings. */
@@ -455,6 +457,7 @@ public class GameScreen extends Screen {
         this.hyperfireDroppedThisLevel = false;
         this.annihilatorDroppedThisLevel = false;
         this.hyperfireKeyPressed = false;
+		this.bossMusicTriggered = false;
 
         this.grenades = new HashSet<Grenade>();
         this.fragments = new HashSet<GrenadeFragment>();
@@ -678,6 +681,11 @@ public class GameScreen extends Screen {
 						this.ship.getPositionX() + this.ship.getWidth() / 2,
 						this.ship.getPositionY(), this.bossBullets);
             }
+
+			if (isBossLevel(this.level) && getBossOnScreen() != null && !this.bossMusicTriggered) {
+				AudioManager.playBGM("audio/bgm/music_boss.wav");
+				this.bossMusicTriggered = true;
+			}
 
 			if (!this.ship.isDestroyed() && !this.annihilator.isCharging())
 				this.bulletsShot += this.ship.updateBurst(this.bullets);
@@ -1244,6 +1252,8 @@ public class GameScreen extends Screen {
 			return;
 		boss.takeDamage(damage);
 		this.bossManager.sync();
+		AudioManager.playSFX("audio/sfx/boss_hit.wav");
+
 		// The check above stops a defeated boss from being hit again, so the
 		// score is given only once per boss.
 		if (boss.isDefeated()) {
